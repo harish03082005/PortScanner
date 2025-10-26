@@ -5,14 +5,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/**
- * Exports scan results to various file formats
- */
+//exports scan results
 public class ResultExporter {
     
-    /**
-     * Export results to plain text file
-     */
+     // Export results to plain text file
+     
     public static void exportToText(List<PortResult> results, String host, 
                                     long durationMs, String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
@@ -121,4 +118,5 @@ public class ResultExporter {
                   .replace("\n", "\\n")
                   .replace("\r", "\\r");
     }
+
 }
