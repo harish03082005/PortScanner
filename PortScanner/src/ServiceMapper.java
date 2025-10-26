@@ -41,19 +41,10 @@ public class ServiceMapper {
         SERVICE_MAP.put(27017, "MongoDB");
     }
     
-    /**
-     * Get service name for a given port
-     * @param port Port number
-     * @return Service name or "Unknown" if not mapped
-     */
     public static String getServiceName(int port) {
         return SERVICE_MAP.getOrDefault(port, "Unknown");
     }
     
-    /**
-     * Get all top ports for quick scanning
-     * @return Array of commonly scanned ports
-     */
     public static int[] getTopPorts() {
         return new int[]{
             21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 
@@ -61,4 +52,5 @@ public class ServiceMapper {
             5432, 5900, 8080, 27017
         };
     }
+
 }
