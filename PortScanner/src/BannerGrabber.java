@@ -4,18 +4,12 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-/**
- * Utility class for grabbing service banners from open ports
- */
+
+ // Utility class for grabbing service banners from open ports
+
 public class BannerGrabber {
     
-    /**
-     * Attempt to grab banner from an open port
-     * @param host Target host
-     * @param port Target port
-     * @param timeoutMs Connection timeout in milliseconds
-     * @return Banner string or empty string if unavailable
-     */
+   
     public static String grabBanner(String host, int port, int timeoutMs) {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), timeoutMs);
@@ -31,7 +25,7 @@ public class BannerGrabber {
                 StringBuilder banner = new StringBuilder();
                 String line;
                 int lines = 0;
-                while (reader.ready() && lines < 3) { // Read max 3 lines
+                while (reader.ready() && lines < 3) {
                     line = reader.readLine();
                     if (line != null) {
                         banner.append(line.trim()).append(" ");
@@ -46,4 +40,5 @@ public class BannerGrabber {
         }
         return "";
     }
+
 }
