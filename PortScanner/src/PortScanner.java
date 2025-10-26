@@ -11,13 +11,6 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Multi-threaded TCP Port Scanner
- * Identifies open ports on target hosts using concurrent socket connections
- * 
- * @author Harish Varutharasu
- * @version 1.0
- */
 public class PortScanner {
     
     // Default configuration
@@ -33,12 +26,11 @@ public class PortScanner {
     private static boolean verbose = false;
     private static String exportFormat = null; // txt, csv, json
     
-    /**
-     * Main entry point for the port scanner
-     */
+    
+     //Main entry point 
+    
     public static void main(String[] args) {
         try {
-            // Parse command line arguments
             ScanConfig config = parseArguments(args);
             
             if (config == null) {
@@ -70,10 +62,6 @@ public class PortScanner {
             }
         }
     }
-    
-    /**
-     * Parse command line arguments into configuration
-     */
     private static ScanConfig parseArguments(String[] args) {
         if (args.length < 1) {
             return null;
@@ -163,9 +151,6 @@ public class PortScanner {
         return new ScanConfig(host, startPort, endPort, timeout, threads);
     }
     
-    /**
-     * Execute the port scan with multi-threading
-     */
     private static List<PortResult> executeScan(ScanConfig config) 
             throws InterruptedException {
         
@@ -247,10 +232,9 @@ public class PortScanner {
         return openPorts;
     }
     
-    /**
-     * Scan a single port
-     * @return PortResult if open, null if closed/filtered
-     */
+     // Scan a single port
+     //@return PortResult if open, null if closed/filtered
+     
     private static PortResult scanPort(String host, int port, int timeoutMs) {
         try (Socket socket = new Socket()) {
             // Attempt TCP connection
@@ -280,16 +264,12 @@ public class PortScanner {
         }
     }
     
-    /**
-     * Validate that the target host is reachable
-     */
+     // Validate that the target host is reachable
+    
     private static void validateHost(String host) throws UnknownHostException {
         InetAddress.getByName(host);
     }
     
-    /**
-     * Display application banner and scan configuration
-     */
     private static void displayBanner(ScanConfig config) {
         System.out.println("═══════════════════════════════════════════════");
         System.out.println("        MULTI-THREADED PORT SCANNER");
@@ -440,3 +420,4 @@ public class PortScanner {
         }
     }
 }
+
